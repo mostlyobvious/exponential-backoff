@@ -95,8 +95,11 @@ backoff.current_interval # 3.764
 There is also sugar for executing block of code until successful with increasing intervals:
 
 ```ruby
-backoff.until_success do |interval|
+backoff.until_success do |interval, retry_count|
   # do your thing, returning true clears elapsed time and breaks loop
   # when false, increase interval and retry
+
+  # you can break loop earlier
+  break if retry_count > 3
 end
 ```
