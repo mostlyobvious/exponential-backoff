@@ -1,5 +1,5 @@
-ExponentialBackoff
-==================
+Exponential Backoff
+===================
 
 Too lazy to make retries to external services in a fashion that providers recommend? Never heard of [exponential backoff](http://en.wikipedia.org/wiki/Exponential_backoff) technique? Now there is no excuse not to be nice.
 
