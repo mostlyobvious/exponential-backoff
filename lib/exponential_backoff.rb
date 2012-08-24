@@ -40,7 +40,8 @@ class ExponentialBackoff
 
   def until_success(&block)
     intervals.each_with_index do |interval, iteration|
-      break if block.call(interval, iteration)
+      retval = block.call(interval, iteration)
+      return if retval || retval.nil?
       sleep(interval)
     end
   end

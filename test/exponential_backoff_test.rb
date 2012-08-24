@@ -105,10 +105,10 @@ class ExponentialBackoffTest < Test::Unit::TestCase
     backoff = ExponentialBackoff.new(min, max)
 
     counter = 0
-    return_true = proc do
+    return_true = -> {
       counter += 1
-      true
-    end
+      return true
+    }
     backoff.until_success { return_true.call }
     assert_equal 1, counter
   end
@@ -118,11 +118,11 @@ class ExponentialBackoffTest < Test::Unit::TestCase
     backoff = ExponentialBackoff.new(min, max)
 
     counter = 0
-    return_false = proc do
+    return_false = -> {
       counter += 1
-      break if counter > 1
-      false
-    end
+      return if counter > 1
+      return false
+    }
     backoff.until_success { return_false.call }
     assert_equal 2, counter
   end
@@ -143,16 +143,15 @@ class ExponentialBackoffTest < Test::Unit::TestCase
     backoff = ExponentialBackoff.new(min, max)
 
     counter = 0
-    return_false = proc do
+    return_false = -> {
       counter += 1
-      break if counter > 2
-      false
-    end
+      return if counter > 2
+      return false
+    }
 
     time = Time.now.to_f
     backoff.until_success { return_false.call }
     elapsed = Time.now.to_f - time
-
     assert elapsed >= 0.3
   end
 end

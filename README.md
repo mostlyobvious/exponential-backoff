@@ -102,8 +102,9 @@ backoff.until_success do |interval, retry_count|
   # when last line in block evaluates to true, elapsed time clear and loop breaks
   # when false, increase interval and retry
 
-  # you can break loop earlier if you want
-  break if retry_count > 3
+  # you can break loop earlier if you want,
+  # `nil` return value is considered a success
+  return if retry_count > 3
 end
 ```
 
