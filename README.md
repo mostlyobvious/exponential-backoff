@@ -81,10 +81,10 @@ backoff.next_interval # 4.0
 Finally you can specify interval multiplier and randomization factor:
 
 ```ruby
-multiplier = 1.5
-randomizer = 0.25
+backoff = ExponentialBackoff.new(min_interval, max_elapsed)
+backoff.multiplier = 1.5
+backoff.randomize_factor = 0.25
 
-backoff = ExponentialBackoff.new(min_interval, max_elapsed, multiplier, randomizer)
 backoff.intervals_for(0..2) # [3.764, 6.587, 9.76]
 ```
 
