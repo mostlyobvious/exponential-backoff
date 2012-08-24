@@ -96,10 +96,16 @@ There is also sugar for executing block of code until successful with increasing
 
 ```ruby
 backoff.until_success do |interval, retry_count|
-  # do your thing, returning true clears elapsed time and breaks loop
+  # do your thing
+  # when last line in block evaluates to true, elapsed time clear and loop breaks
   # when false, increase interval and retry
 
-  # you can break loop earlier
+  # you can break loop earlier if you want
   break if retry_count > 3
 end
 ```
+
+Running tests
+-------------
+
+    ruby -Ilib -Itest test/exponential_backoff_test.rb
