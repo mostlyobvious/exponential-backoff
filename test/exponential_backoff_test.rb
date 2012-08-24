@@ -1,5 +1,5 @@
 require 'test/unit'
-require 'Exponential_backoff'
+require 'exponential_backoff'
 
 class ExponentialBackoffTest < Test::Unit::TestCase
   def test_multiplier_default
