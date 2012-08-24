@@ -53,7 +53,9 @@ class ExponentialBackoff
 
   def randomized_interval(interval)
     return interval if @randomize_factor == 0
-    rand(((1 - @randomize_factor) * interval)..((1 + @randomize_factor) * interval))
+    min = (1 - @randomize_factor) * interval
+    max = (1 + @randomize_factor) * interval
+    rand(max - min) + min
   end
 
   def capped_interval(interval)
