@@ -4,8 +4,7 @@ require File.expand_path('../lib/exponential_backoff/version', __FILE__)
 Gem::Specification.new do |gem|
   gem.authors       = ["Paweł Pacana"]
   gem.email         = ["pawel.pacana@gmail.com"]
-  gem.description   = %q{TODO: Write a gem description}
-  gem.summary       = %q{TODO: Write a gem summary}
+  gem.summary       = %q{Exponential backoff algorithm for better reconnect intervals.}
   gem.homepage      = ""
 
   gem.files         = `git ls-files`.split($\)
