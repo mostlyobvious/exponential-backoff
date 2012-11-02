@@ -4,9 +4,14 @@ class ExponentialBackoff
   attr_accessor :multiplier, :randomize_factor
   attr_reader   :current_interval
 
-  def initialize(minimal_interval, maximum_elapsed_time)
-    @maximum_elapsed_time = maximum_elapsed_time
-    @minimal_interval = minimal_interval
+  def initialize(interval, maximum_elapsed_time = nil)
+    if interval.respond_to?(:first)
+      @minimal_interval, @maximum_elapsed_time = interval.first, interval.last
+    else
+      @minimal_interval, @maximum_elapsed_time = interval, maximum_elapsed_time
+    end
+    raise ArgumentError, "Invalid range specified" if [@minimal_interval, @maximum_elapsed_time].any? { |i| !i.is_a?(Numeric) }
+
     @randomize_factor = 0
     @multiplier = 2.0
     clear

@@ -2,6 +2,22 @@ require 'test/unit'
 require 'exponential_backoff'
 
 class ExponentialBackoffTest < Test::Unit::TestCase
+  def test_range_initializer
+    backoff = ExponentialBackoff.new(1..5)
+    assert_equal [1, 2, 4, 5], backoff.intervals_for(0..3)
+  end
+
+  def test_array_initializer
+    backoff = ExponentialBackoff.new([1, 5])
+    assert_equal [1, 2, 4, 5], backoff.intervals_for(0..3)
+  end
+
+  def test_no_maximal_time
+    assert_raise ArgumentError do
+      backoff = ExponentialBackoff.new(2)
+    end
+  end
+
   def test_multiplier_default
     min, max = 1, 2
     backoff = ExponentialBackoff.new(min, max)
