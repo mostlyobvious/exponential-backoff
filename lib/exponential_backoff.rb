@@ -20,6 +20,16 @@ class ExponentialBackoff
     @current_interval = @enumerator.next
   end
 
+  def iteration_active?(iteration)
+    index = 0
+    current_interval = interval_at(index)
+    while current_interval < iteration && current_interval < @maximum_elapsed_time
+      index += 1
+      current_interval = interval_at(index)
+    end
+    current_interval == iteration || iteration % @maximum_elapsed_time == 0
+  end
+
   def intervals_for(range)
     range.to_a.map { |iteration| interval_at(iteration) }
   end
