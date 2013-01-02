@@ -94,6 +94,15 @@ You can peek what is the current interval:
 backoff.current_interval # 3.764
 ```
 
+You can check if given iteration is one of intervals or maximum interval multiple:
+
+```ruby
+backoff = ExponentialBackoff.new(1, 10)
+backoff.iteration_active?(4) # true
+backoff.iteration_active?(20) # true
+backoff.iteration_active?(3) # false
+```
+
 There is also sugar for executing block of code until successful with increasing intervals:
 
 ```ruby

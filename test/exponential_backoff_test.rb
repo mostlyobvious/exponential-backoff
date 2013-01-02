@@ -154,5 +154,20 @@ class ExponentialBackoffTest < Test::Unit::TestCase
     elapsed = Time.now.to_f - time
     assert elapsed >= 0.3
   end
+
+  def test_iteration_active_for_one_from_list
+    backoff = ExponentialBackoff.new(1, 10)
+    assert backoff.iteration_active?(4)
+  end
+
+  def test_iteration_active_for_maximum_interval_multiple
+    backoff = ExponentialBackoff.new(1, 10)
+    assert backoff.iteration_active?(20)
+  end
+
+  def test_iteration_active_for_not_from_list_and_not_multiple
+    backoff = ExponentialBackoff.new(1, 10)
+    refute backoff.iteration_active?(6)
+  end
 end
 
