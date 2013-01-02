@@ -38,6 +38,13 @@ maximal_elapsed_time = 60.0
 backoff = ExponentialBackoff.new(minimal_interval, maximal_elapsed_time)
 ```
 
+Arrays and ranges work for your convenience too:
+
+```ruby
+backoff = ExponentialBackoff.new(minimal_interval..maximal_elapsed_time)
+backoff = ExponentialBackoff.new([minimal_interval, maximal_elapsed_time])
+```
+
 You can get intervals for specified range:
 
 ```ruby
@@ -120,7 +127,7 @@ end
 Running tests
 -------------
 
-    ruby -Ilib -Itest test/exponential_backoff_test.rb
+    bundle exec rake test
 
 
 Supported rubies
