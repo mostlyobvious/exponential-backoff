@@ -1,3 +1,7 @@
+0.0.3
+
+  - Give bundler a chance to require this gem when listed in Gemfile
+
 0.0.2
 
   - Initialize backoff with Array or Range as a convenience.
