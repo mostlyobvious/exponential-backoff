@@ -13,6 +13,7 @@ Gem::Specification.new do |gem|
   gem.name          = "exponential-backoff"
   gem.require_paths = ["lib"]
   gem.version       = ExponentialBackoff::VERSION
-  
+
   gem.add_development_dependency 'rake'
+  gem.add_development_dependency 'test-unit'
 end
