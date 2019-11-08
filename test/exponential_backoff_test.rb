@@ -14,7 +14,7 @@ class ExponentialBackoffTest < Test::Unit::TestCase
 
   def test_no_maximal_time
     assert_raise ArgumentError do
-      backoff = ExponentialBackoff.new(2)
+      ExponentialBackoff.new(2)
     end
   end
 
