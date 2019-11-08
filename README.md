@@ -130,7 +130,3 @@ Running tests
     bundle exec rake test
 
 
-Supported rubies
-----------------
-
-Targets all Rubies (including Rubinius and JRuby) provided it's at least 1.9 mode.
