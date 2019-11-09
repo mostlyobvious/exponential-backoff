@@ -20,6 +20,7 @@ task :mutate do
         --ignore-subject ExponentialBackoff#intervals
         --ignore-subject ExponentialBackoff#until_success
         --ignore-subject ExponentialBackoff#iteration_active?
+        --ignore-subject ExponentialBackoff#randomized_interval
         -- ExponentialBackoff*
       ].split
     )
