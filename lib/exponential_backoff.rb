@@ -67,8 +67,8 @@ class ExponentialBackoff
     raise ArgumentError, "Invalid range specified" unless [@minimal_interval, @maximum_elapsed_time].all? { |i| i.is_a?(Numeric) }
   end
 
-  def regular_interval(initial, multiplier, iteration)
-    initial * multiplier ** iteration
+  def regular_interval(initial, multiplier_, iteration)
+    initial * multiplier_ ** iteration
   end
 
   def randomized_interval(interval)
