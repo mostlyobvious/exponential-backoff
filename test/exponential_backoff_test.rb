@@ -217,5 +217,16 @@ class ExponentialBackoffTest < Minitest::Test
     end
     assert_equal "Invalid range specified", exc.message
   end
+
+  def test_randomize_factor_with_known_seed
+    current_seed = Kernel.srand(0)
+    min, max     = 1, 5
+    backoff      = ExponentialBackoff.new(min, max)
+    backoff.randomize_factor = 0.25
+
+    assert_equal [1.2988135039273248, 1.5, 4.0, 3.75, 4.75], backoff.intervals_for(0..4)
+  ensure
+    Kernel.srand(current_seed)
+  end
 end
 
