@@ -188,5 +188,12 @@ class ExponentialBackoffTest < Minitest::Test
     backoff = ExponentialBackoff.new(1, 10)
     refute backoff.iteration_active?(6)
   end
+
+  def test_with_different_boundary
+    min, max = 30, 90
+    backoff = ExponentialBackoff.new(min, max)
+
+    assert_equal [30, 60, 90, 90], backoff.intervals_for(0..3)
+  end
 end
 
