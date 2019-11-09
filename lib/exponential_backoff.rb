@@ -40,7 +40,7 @@ class ExponentialBackoff
   end
 
   def interval_at(iteration)
-    randomized_interval(capped_interval(regular_interval(@minimal_interval, @multiplier, iteration)))
+    randomized_interval(capped_interval(regular_interval(@minimal_interval, multiplier, iteration)))
   end
 
   def intervals
@@ -72,9 +72,9 @@ class ExponentialBackoff
   end
 
   def randomized_interval(interval)
-    return interval if @randomize_factor == 0
-    min = (1 - @randomize_factor) * interval
-    max = (1 + @randomize_factor) * interval
+    return interval if randomize_factor == 0
+    min = (1 - randomize_factor) * interval
+    max = (1 + randomize_factor) * interval
     rand(max - min) + min
   end
 
