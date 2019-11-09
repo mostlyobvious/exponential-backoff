@@ -17,6 +17,9 @@ task :mutate do
         --include lib
         --require exponential_backoff.rb
         --use minitest
+        --ignore-subject ExponentialBackoff#intervals
+        --ignore-subject ExponentialBackoff#until_success
+        --ignore-subject ExponentialBackoff#iteration_active?
         -- ExponentialBackoff*
       ].split
     )
