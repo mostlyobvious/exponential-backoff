@@ -1,7 +1,7 @@
-require 'test/unit'
+require 'minitest/autorun'
 require 'exponential_backoff'
 
-class ExponentialBackoffTest < Test::Unit::TestCase
+class ExponentialBackoffTest < Minitest::Test
   def test_range_initializer
     backoff = ExponentialBackoff.new(1..5)
     assert_equal [1, 2, 4, 5], backoff.intervals_for(0..3)
@@ -13,7 +13,7 @@ class ExponentialBackoffTest < Test::Unit::TestCase
   end
 
   def test_no_maximal_time
-    assert_raise ArgumentError do
+    assert_raises ArgumentError do
       ExponentialBackoff.new(2)
     end
   end
@@ -87,7 +87,7 @@ class ExponentialBackoffTest < Test::Unit::TestCase
     first, second = backoff.intervals, backoff.intervals
     first.next
 
-    assert_not_equal first.next, second.next
+    refute_equal first.next, second.next
   end
 
   def test_interval_is_float
