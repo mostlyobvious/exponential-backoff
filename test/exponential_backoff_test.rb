@@ -16,9 +16,10 @@ class ExponentialBackoffTest < Minitest::Test
   end
 
   def test_no_maximal_time
-    assert_raises ArgumentError, "Invalid range specified" do
+    exc = assert_raises ArgumentError do
       ExponentialBackoff.new(2)
     end
+    assert_equal "Invalid range specified", exc.message
   end
 
   def test_multiplier_default
