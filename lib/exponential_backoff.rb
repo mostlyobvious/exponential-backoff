@@ -36,7 +36,7 @@ class ExponentialBackoff
   end
 
   def intervals_for(range)
-    range.to_a.map { |iteration| interval_at(iteration) }
+    range.map { |iteration| interval_at(iteration) }
   end
 
   def interval_at(iteration)
