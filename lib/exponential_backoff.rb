@@ -64,7 +64,7 @@ class ExponentialBackoff
   protected
 
   def verify_correct_range
-    raise ArgumentError, "Invalid range specified" if [@minimal_interval, @maximum_elapsed_time].any? { |i| !i.is_a?(Numeric) }
+    raise ArgumentError, "Invalid range specified" unless [@minimal_interval, @maximum_elapsed_time].all? { |i| i.is_a?(Numeric) }
   end
 
   def regular_interval(initial, multiplier, iteration)
