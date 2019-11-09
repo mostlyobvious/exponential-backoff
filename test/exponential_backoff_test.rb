@@ -203,5 +203,19 @@ class ExponentialBackoffTest < Minitest::Test
     end
     assert_equal "Invalid range specified", exc.message
   end
+
+  def test_invalid_range_of_non_numerics
+    exc = assert_raises ArgumentError do
+      ExponentialBackoff.new('a'..'z')
+    end
+    assert_equal "Invalid range specified", exc.message
+  end
+
+  def test_invalid_non_numeric_interval
+    exc = assert_raises ArgumentError do
+      ExponentialBackoff.new('1.0', 100)
+    end
+    assert_equal "Invalid range specified", exc.message
+  end
 end
 
