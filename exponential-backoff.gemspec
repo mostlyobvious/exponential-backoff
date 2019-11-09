@@ -20,4 +20,5 @@ Gem::Specification.new do |gem|
 
   gem.add_development_dependency 'rake'
   gem.add_development_dependency 'minitest', '~> 5.13'
+  gem.add_development_dependency 'mutant-minitest'
 end

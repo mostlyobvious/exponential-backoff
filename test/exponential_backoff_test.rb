@@ -1,7 +1,10 @@
 require 'minitest/autorun'
+require 'mutant/minitest/coverage'
 require 'exponential_backoff'
 
 class ExponentialBackoffTest < Minitest::Test
+  cover 'ExponentialBackoff*'
+
   def test_range_initializer
     backoff = ExponentialBackoff.new(1..5)
     assert_equal [1, 2, 4, 5], backoff.intervals_for(0..3)
